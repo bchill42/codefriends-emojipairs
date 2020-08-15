@@ -1,0 +1,67 @@
+.tabs {
+  display: flex;
+  flex-direction: row;
+  background-color: #ea7575;
+  color: #f0f0f0;
+  align-items: center;
+}
+
+.logo {
+  padding-left: 1.5rem;
+  font-size: 2rem;
+}
+
+.tabList {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  align-items: center;
+}
+
+.tabList li {
+  margin-right: 1rem;
+}
+
+.title {
+  font-size: 5rem;
+  text-align: center;
+  padding-top: 2rem;
+  color: #ea7575;
+}
+
+.big-container {
+  display: flex;
+  display: row;
+  align-items: center;
+}
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem 10rem 2rem 0rem;
+}
+
+.side-container {
+  padding: 5rem;
+  text-align: center;
+}
+
+.square {
+  flex: 1 0 13%;
+  height: 4rem;
+  border-radius: 10%;
+  background-color: #6a8be7;
+  margin: 0.5rem;
+  text-align: center;
+  font-size: 2.5rem;
+  padding-top: 1rem;
+}
+
+.squareInside {
+  visibility: hidden;
+}
+
+.square:hover {
+  cursor: pointer;
+}
