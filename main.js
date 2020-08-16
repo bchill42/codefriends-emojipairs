@@ -1,4 +1,4 @@
-const boardSize = 6;
+const boardSize = 2;
 const boardItems = Math.pow(boardSize, 2);
 let board = [];
 let disableClick = false;
@@ -93,37 +93,42 @@ for (let i = 0; i < boardItems; i++) {
 }
 let count = 0;
 let picked = [];
-let pickedInner = [];
+let pickedBack = [];
 
 function selectedSquare() {
   if (!clickDisable) {
     clickDisable = true;
     totalClicks++;
-    let inner = this.getElementsByClassName("squareInside")[0];
+    let toggle = false;
+    let item = this.getElementsByClassName("squareBack")[0];
+    console.log(item.accessKey);
     if (count === 0) {
       clickDisable = false;
       picked.push(this);
-      inner.style.visibility = "visible";
-      pickedInner.push(inner);
-      count++;
+      pickedBack.push(item);
+      this.classList.add("is-flipped");
       this.removeEventListener("click", selectedSquare);
-    } else if (count === 1 && pickedInner[0].accessKey === inner.accessKey) {
-      inner.style.visibility = "visible";
+      count++;
+    } else if (count === 1 && item.accessKey === pickedBack[0].accessKey) {
+      console.log("paired");
       document.getElementById("side-container").innerHTML = `Turns ${
         totalClicks / 2
       }`;
+      this.classList.add("is-flipped");
+      console.log("this", this);
+      console.log("picked", picked[0]);
       setTimeout(() => {
         clickDisable = false;
-        inner.style.visibility = "hidden";
-        pickedInner[0].style.visibility = "hidden";
-        this.style.backgroundColor = "#ea7575";
-        picked[0].style.backgroundColor = "#ea7575";
-        this.style.cursor = "none";
-        picked[0].style.cursor = "none";
+        this.classList.remove("is-flipped");
+        this.classList.add("squarePaired");
+        picked[0].classList.remove("is-flipped");
+        picked[0].classList.add("squarePaired");
+        console.log("this", this);
+        console.log("picked", picked[0]);
         this.removeEventListener("click", selectedSquare);
         picked[0].removeEventListener("click", selectedSquare);
         picked.pop();
-        pickedInner.pop();
+        pickedBack.pop();
         squaresRemaining--;
         squaresRemaining--;
         if (squaresRemaining === 0) {
@@ -132,18 +137,18 @@ function selectedSquare() {
         }
       }, 1500);
       count = 0;
-    } else if (count === 1 && pickedInner[0].accessKey !== inner.accessKey) {
-      inner.style.visibility = "visible";
+    } else if (count === 1 && item.accessKey !== pickedBack.accessKey) {
       document.getElementById("side-container").innerHTML = `Turns ${
         totalClicks / 2
       }`;
+      this.classList.add("is-flipped");
       setTimeout(() => {
+        this.classList.remove("is-flipped");
+        picked[0].classList.remove("is-flipped");
         clickDisable = false;
         picked[0].addEventListener("click", selectedSquare);
-        pickedInner[0].style.visibility = "hidden";
-        inner.style.visibility = "hidden";
         picked.pop();
-        pickedInner.pop();
+        pickedBack.pop();
       }, 1500);
       count = 0;
     }
@@ -160,10 +165,9 @@ function createBoardArray() {
       paired: false,
     };
     let clone = squareContainer[0].cloneNode(true);
-    let squareItem = clone.getElementsByClassName("squareInside");
-    squareItem[0].innerHTML = `${board[i].emoji}`;
-    squareItem[0].accessKey = `${board[i].value}`;
-    clone.style.color = "#6a8be7";
+    let cloneBack = clone.getElementsByClassName("squareBack")[0];
+    cloneBack.innerHTML = `${board[i].emoji}`;
+    cloneBack.accessKey = `${board[i].value}`;
     clone.addEventListener("click", selectedSquare);
     document.getElementById("main").appendChild(clone);
   }

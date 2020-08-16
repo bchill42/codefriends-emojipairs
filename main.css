@@ -50,18 +50,50 @@
 .square {
   flex: 1 0 13%;
   height: 4rem;
-  border-radius: 10%;
-  background-color: #6a8be7;
+  width: 4rem;
   margin: 0.5rem;
-  text-align: center;
   font-size: 2.5rem;
-  padding-top: 1rem;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
 }
 
-.squareInside {
-  visibility: hidden;
+.squareFace {
+  border-radius: 10%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+}
+
+.squareFront {
+  background-color: #6a8be7;
+}
+
+.squareBack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ea7575;
+  transform: rotateY(180deg);
+}
+
+.squarePaired {
+  border-radius: 10%;
+}
+
+.squarePaired .squareFront {
+  background-color: #c4cce1;
+}
+
+.square.is-flipped {
+  transform: rotateY(180deg);
 }
 
 .square:hover {
   cursor: pointer;
+}
+
+.square.squarePaired:hover {
+  cursor: not-allowed;
 }
