@@ -7,16 +7,31 @@
   </head>
   <body>
     <div class="title">Emoji Match</div>
-    <div class="big-container">
-      <div class="side-container" id="side-container">Turns 0</div>
+    <div class="settings">
+      <div>
+        <div id="boardSizeDiv" class="boardSetting">Board Size</div>
+        <div id="board2" class="boardNum">2</div>
+        <div id="board4" class="boardNum">4</div>
+        <div id="board6" class="boardNum">6</div>
+      </div>
+      <div>
+        <div id="numPlayers" class="boardSetting">Number of Players</div>
+        <div class="playerNum">1</div>
+        <div class="playerNum">2</div>
+      </div>
+      <div>
+        <div id="loadBoard" class="boardSetting">Load Board</div>
+      </div>
+    </div>
+    <div id="big-contanier" class="big-container">
+      <div class="turns-container" id="side-container">Turns 0</div>
       <div class="main-container" id="main">
         <div class="square">
           <div class="squareFace squareFront"></div>
           <div class="squareFace squareBack"></div>
-          <!-- <div class="square squarePaired"></div> -->
         </div>
       </div>
     </div>
-    <script src="main.js"></script>
+    <script src="board.js"></script>
   </body>
 </html>

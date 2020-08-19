@@ -29,9 +29,54 @@
   color: #ea7575;
 }
 
-.big-container {
+.settings {
   display: flex;
-  display: row;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.boardSetting {
+  margin: 1rem;
+  background-color: #c4cce1;
+  padding: 1rem;
+  border-radius: 10%;
+}
+
+.boardSetting:hover {
+  cursor: pointer;
+  background-color: #ea7575;
+}
+
+.boardNum {
+  /* visibility: hidden; */
+  display: none;
+  text-align: center;
+  background-color: #c4cce1;
+  padding: 0.3rem 0rem;
+  margin: 0.7rem 2rem;
+  border-radius: 10%;
+}
+
+.selected {
+  background-color: #ea7575;
+}
+
+.boardNum:hover {
+  cursor: pointer;
+  background-color: #6a8be7;
+}
+
+.playerNum {
+  /* visibility: hidden; */
+  display: none;
+  text-align: center;
+  background-color: #6a8be7;
+  padding: 0.3rem 0rem;
+  margin: 0.7rem 2rem;
+  border-radius: 10%;
+}
+
+.big-container {
   align-items: center;
 }
 
@@ -39,11 +84,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 2rem 10rem 2rem 0rem;
+  padding: 2rem 10rem 2rem 10rem;
 }
 
-.side-container {
-  padding: 5rem;
+.turns-container {
+  padding-top: 3rem;
   text-align: center;
 }
 
