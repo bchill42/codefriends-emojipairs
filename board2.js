@@ -2,9 +2,8 @@ function selectedSquare() {
   if (!clickDisable) {
     clickDisable = true;
     totalClicks++;
-    let toggle = false;
     let item = this.getElementsByClassName("squareBack")[0];
-    console.log(item);
+    console.log(`number of players in selectedSquare = ${players}`);
     if (count === 0) {
       clickDisable = false;
       picked.push(this);
@@ -13,27 +12,6 @@ function selectedSquare() {
       this.removeEventListener("click", selectedSquare);
       count++;
     } else if (count === 1 && item.accessKey === pickedBack[0].accessKey) {
-      if (playersTurn === 1) {
-        player1Correct++;
-        playersTurn = 2;
-        document.getElementById(
-          "player1correct"
-        ).innerHTML = `${player1Correct}`;
-        document.getElementById("player2div").classList.add("playerTurn");
-        document.getElementById("player1div").classList.remove("playerTurn");
-        this.classList.add("player1");
-        picked[0].classList.add("player1");
-      } else if (playersTurn === 2) {
-        player2Correct++;
-        playersTurn = 1;
-        document.getElementById(
-          "player2correct"
-        ).innerHTML = `${player2Correct}`;
-        document.getElementById("player2div").classList.remove("playerTurn");
-        document.getElementById("player1div").classList.add("playerTurn");
-        this.classList.add("player2");
-        picked[0].classList.add("player2");
-      }
       document.getElementById("side-container").innerHTML = `Turns ${
         totalClicks / 2
       }`;
@@ -49,6 +27,27 @@ function selectedSquare() {
         }
       });
       setTimeout(() => {
+        if (playersTurn === 1 && players === 2) {
+          player1Correct++;
+          playersTurn = 2;
+          document.getElementById(
+            "player1correct"
+          ).innerHTML = `${player1Correct}`;
+          document.getElementById("player2div").classList.add("playerTurn");
+          document.getElementById("player1div").classList.remove("playerTurn");
+          this.classList.add("player1");
+          picked[0].classList.add("player1");
+        } else if (playersTurn === 2 && players === 2) {
+          player2Correct++;
+          playersTurn = 1;
+          document.getElementById(
+            "player2correct"
+          ).innerHTML = `${player2Correct}`;
+          document.getElementById("player2div").classList.remove("playerTurn");
+          document.getElementById("player1div").classList.add("playerTurn");
+          this.classList.add("player2");
+          picked[0].classList.add("player2");
+        }
         clickDisable = false;
         this.classList.remove("is-flipped");
         this.classList.add("squarePaired");
@@ -94,7 +93,6 @@ function selectedSquare() {
 }
 
 function createBoardArray() {
-  console.log(document.getElementsByClassName("square")[0]);
   document.getElementById("side-container").innerHTML = "Turns 0";
   totalClicks = 0;
   if (document.getElementsByClassName("square").length > 1) {
@@ -226,20 +224,20 @@ function setBoardSize() {
 }
 
 function changeNumPlayers() {
-  numPlayers = parseInt(this.innerHTML);
+  players = parseInt(this.innerHTML);
   document.getElementsByClassName("playerNum")[0].style.display = "none";
   document.getElementsByClassName("playerNum")[1].style.display = "none";
   let player1 = document.getElementById("players1");
   let player2 = document.getElementById("players2");
-  if (numPlayers === 1) {
+  if (players === 1) {
     player1.classList.add("selected");
     player2.classList.remove("selected");
   }
-  if (numPlayers === 2) {
+  if (players === 2) {
     player1.classList.remove("selected");
     player2.classList.add("selected");
   }
-  console.log(`number of players in changeNumPLayers: ${numPlayers}`);
+  console.log(`number of players in changeNumPLayers: ${players}`);
   player1.removeEventListener("click", changeNumPlayers);
   player2.removeEventListener("click", changeNumPlayers);
 }
@@ -256,13 +254,12 @@ function setNumPlayers() {
 }
 
 function setLoadBoard() {
-  console.log(`number of players in setLoadBoard: ${numPlayers}`);
-  console.log(document.getElementsByClassName("playerDivs")[0]);
-  if (numPlayers === 1) {
+  console.log(`number of players in setLoadBoard: ${players}`);
+  if (players === 1) {
     document.getElementsByClassName("playerDivs")[0].style.display = "none";
     document.getElementsByClassName("playerDivs")[1].style.display = "none";
   }
-  if (numPlayers === 2) {
+  if (players === 2) {
     document.getElementsByClassName("playerDivs")[0].style.display = "block";
     document.getElementsByClassName("playerDivs")[1].style.display = "block";
   }
@@ -318,7 +315,7 @@ let randomNumberArray = [];
 let playersTurn = 1;
 let player1Correct = 0;
 let player2Correct = 0;
-let numPlayers = 1;
+let players = 1;
 let boardSize;
 let boardItems = Math.pow(boardSize, 2);
 let squaresRemaining = boardItems;
