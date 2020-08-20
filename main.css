@@ -57,7 +57,11 @@
   border-radius: 10%;
 }
 
-.selected {
+.boardNum.selected {
+  background-color: #ea7575;
+}
+
+.playerNum.selected {
   background-color: #ea7575;
 }
 
@@ -70,10 +74,15 @@
   /* visibility: hidden; */
   display: none;
   text-align: center;
-  background-color: #6a8be7;
+  background-color: #c4cce1;
   padding: 0.3rem 0rem;
   margin: 0.7rem 2rem;
   border-radius: 10%;
+}
+
+.playerNum:hover {
+  cursor: pointer;
+  background-color: #6a8be7;
 }
 
 .big-container {
@@ -87,8 +96,43 @@
   padding: 2rem 10rem 2rem 10rem;
 }
 
+.turn-pairs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0rem 12rem;
+  padding-top: 1rem;
+}
+
+.playerDivs {
+  text-align: center;
+  padding: 0rem 2rem;
+  border-radius: 10%;
+}
+
+#player1div {
+  background-color: #a097ec;
+}
+
+#player2div {
+  background-color: #ece622;
+}
+
+.playerName {
+  padding-top: 0.5rem;
+}
+
+.numberPairs {
+  padding-top: 0.5rem;
+  text-align: center;
+}
+
+.playerTurn {
+  border: 0.2rem solid #42e65d;
+}
+
 .turns-container {
-  padding-top: 3rem;
+  padding-top: 1rem;
   text-align: center;
 }
 
@@ -129,6 +173,14 @@
 
 .squarePaired .squareFront {
   background-color: #c4cce1;
+}
+
+.squarePaired.player1 .squareFront {
+  background-color: #a097ec;
+}
+
+.squarePaired.player2 .squareFront {
+  background-color: #ece622;
 }
 
 .square.is-flipped {

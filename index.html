@@ -16,15 +16,25 @@
       </div>
       <div>
         <div id="numPlayers" class="boardSetting">Number of Players</div>
-        <div class="playerNum">1</div>
-        <div class="playerNum">2</div>
+        <div id="players1" class="playerNum">1</div>
+        <div id="players2" class="playerNum">2</div>
       </div>
       <div>
         <div id="loadBoard" class="boardSetting">Load Board</div>
       </div>
     </div>
     <div id="big-contanier" class="big-container">
-      <div class="turns-container" id="side-container">Turns 0</div>
+      <div class="turn-pairs">
+        <div class="playerDivs playerTurn" id="player1div">
+          <div class="playerName">Player 1</div>
+          <div class="numberPairs" id="player1correct">0</div>
+        </div>
+        <div class="turns-container" id="side-container">Turns 0</div>
+        <div class="playerDivs" id="player2div">
+          <div class="playerName">Player 2</div>
+          <div class="numberPairs" id="player2correct">0</div>
+        </div>
+      </div>
       <div class="main-container" id="main">
         <div class="square">
           <div class="squareFace squareFront"></div>
@@ -32,6 +42,6 @@
         </div>
       </div>
     </div>
-    <script src="board.js"></script>
+    <script src="board2.js"></script>
   </body>
 </html>
